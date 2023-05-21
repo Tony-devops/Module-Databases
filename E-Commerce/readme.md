@@ -66,7 +66,13 @@ cyf_ecommerce-# where s.country ='United Kingdom'
 cyf_ecommerce-# order by pa.unit_price desc;
 
 - [ ] List all orders, including order items, from customer named Hope Crosby
+cyf_ecommerce=# select * from orders o inner join
+cyf_ecommerce-# order_items oi on (o.id = oi.order_id)
+cyf_ecommerce-# inner join customers c on (o.customer_id =c.id)
+cyf_ecommerce-# where c.name = 'Hope Crosby';
+
 - [ ] List all the products in the order ORD006. The result should only contain the columns product_name, unit_price, and quantity
+
 - [ ] List all the products with their supplier for all orders of all customers. The result should only contain the columns name (from customer), order_reference, order_date, product_name, supplier_name, and quantity
 
 ## Acceptance Criteria
