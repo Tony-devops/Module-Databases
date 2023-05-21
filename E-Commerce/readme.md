@@ -46,8 +46,16 @@ erDiagram
 Write SQL queries to complete the following tasks:
 
 - [ ] List all the products whose name contains the word "socks"
+cyf_ecommerce=# SELECT* FROM products WHERE product_name LIKE '%socks%';SELECT prod
+
 - [ ] List all the products which cost more than 100 showing product id, name, unit price, and supplier id
+cyf_ecommerce=# SELECT prod_id,product_name, unit_price, supp_id
+cyf_ecommerce-# FROM product_availability pa INNER JOIN products p on (pa.prod_id=p.id)
+cyf_ecommerce-# WHERE unit_price>100;
+
 - [ ] List the 5 most expensive products
+SELECT product_name , unit_price FROM product_availability pa INNER JOIN products p on (pa.prod_id=p.id) order by unit_pr
+desc Limit 5;
 - [ ] List all the products sold by suppliers based in the United Kingdom. The result should only contain the columns product_name and supplier_name
 - [ ] List all orders, including order items, from customer named Hope Crosby
 - [ ] List all the products in the order ORD006. The result should only contain the columns product_name, unit_price, and quantity
