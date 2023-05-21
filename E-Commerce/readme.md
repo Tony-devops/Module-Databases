@@ -56,7 +56,15 @@ cyf_ecommerce-# WHERE unit_price>100;
 - [ ] List the 5 most expensive products
 SELECT product_name , unit_price FROM product_availability pa INNER JOIN products p on (pa.prod_id=p.id) order by unit_pr
 desc Limit 5;
+
 - [ ] List all the products sold by suppliers based in the United Kingdom. The result should only contain the columns product_name and supplier_name
+cyf_ecommerce=# select p.product_name,s.supplier_name
+cyf_ecommerce-# from suppliers s left join
+cyf_ecommerce-# product_availability pa on (s.id = pa.supp_id)
+cyf_ecommerce-# left join products p on (p.id =pa.prod_id)
+cyf_ecommerce-# where s.country ='United Kingdom'
+cyf_ecommerce-# order by pa.unit_price desc;
+
 - [ ] List all orders, including order items, from customer named Hope Crosby
 - [ ] List all the products in the order ORD006. The result should only contain the columns product_name, unit_price, and quantity
 - [ ] List all the products with their supplier for all orders of all customers. The result should only contain the columns name (from customer), order_reference, order_date, product_name, supplier_name, and quantity
