@@ -72,9 +72,17 @@ cyf_ecommerce-# inner join customers c on (o.customer_id =c.id)
 cyf_ecommerce-# where c.name = 'Hope Crosby';
 
 - [ ] List all the products in the order ORD006. The result should only contain the columns product_name, unit_price, and quantity
+cyf_ecommerce=# select p.product_name, pa.unit_price, oi.quantity                                                                                                       from products p inner join                                                                                                                                              product_availability pa on (p.id=pa.prod_id)                                                                                                                            inner join order_items oi on (oi.product_id=p.id and oi.supplier_id=pa.supp_id)                                                                                         inner join orders o on (o.id = oi.order_id)                                                                                                                             where o.order_reference ='ORD006';
+
 
 - [ ] List all the products with their supplier for all orders of all customers. The result should only contain the columns name (from customer), order_reference, order_date, product_name, supplier_name, and quantity
 
+cyf_ecommerce=# select c.name,o.order_reference, o.order_date, p.product_name, s.supplier_name, oi.quantity
+cyf_ecommerce-# from products p
+cyf_ecommerce-# left join order_items oi on (oi.product_id=p.id)
+cyf_ecommerce-# inner join suppliers s on (s.id=oi.supplier_id)
+cyf_ecommerce-# inner join orders o on (oi.order_id=o.id)
+cyf_ecommerce-# inner join customers c on (c.id=o.customer_id);
 ## Acceptance Criteria
 
 - [ ] The `cyf_ecommerce` database is imported and set up correctly
